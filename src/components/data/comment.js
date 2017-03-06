@@ -2,12 +2,11 @@ import React from 'react';
 
 export default (props) => {
   return (
-    <div> 
-    <strong>{props.comment.username} : </strong>
+    <div className='box'> 
+    <strong className="user">{props.comment.username} </strong>
 
-    {props.comment.comment} 
-
-
+    <p className="comment">{props.comment.comment} </p>
+       
     </div>
 
 

@@ -21,3 +21,16 @@
 .click:hover {
   cursor: pointer
 }
+
+.user {
+  font-family: 'american typewriter'
+}
+
+.comment {
+  font-family: 'cochin';
+  font-size: 16px;
+}
+
+.box {
+  background-color: #f2f2f2
+}

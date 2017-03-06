@@ -13,7 +13,6 @@ export default class Data extends Component {
       day: 0,
       showChart: 'snowfall'
     }
-    console.log(this.props.username)
     this.getAltitudeTemps();
   }
 

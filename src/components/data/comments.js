@@ -20,7 +20,6 @@ export default class Comments extends Component {
   fetchComments() {
     axios.get(`http://localhost:3090/comments/${this.props.iden}`).then(response => {
       this.setState({comments: response.data})
-      console.log(this.state.comments)
     })
   }
 
