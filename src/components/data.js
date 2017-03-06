@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Widget from './data/widget'
+import DataHeader from './data/data-header'
 import {BarChart, LineChart} from 'react-easy-chart';
 import moment from 'moment';
 
@@ -7,9 +8,14 @@ export default class Data extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      day: 0
+      day: 0,
+      showChart: 'snowfall'
     }
     this.getAltitudeTemps();
+  }
+
+  changeChart(chart) {
+    this.setState({showChart: chart})
   }
 
   getDate() {
@@ -23,7 +29,6 @@ export default class Data extends Component {
     var graphData = data.weather[this.state.day].hourly.map(timeSlot => {
       return {x:timeSlot.time.length==1 ? '0000' : timeSlot.time.length==4 ? timeSlot.time : '0'+timeSlot.time, y:timeSlot.snowfall_cm}
     })
-    console.log(graphData)
     return graphData
   }
 
@@ -49,6 +54,31 @@ export default class Data extends Component {
     return [graphDataBottom, graphDataMid, graphDataTop]
   }
 
+  renderCharts() {
+    switch(this.state.showChart){
+      case 'snowfall': 
+        var chart = <BarChart grid style={{marginLeft: '3px'}} data={this.makeBarForSnowFall()} axes colorBars width={550}/>
+        break;
+      case 'weather-bot':
+        var chart = <LineChart yDomainRange={[-30, 60]} height={300} grid style={{marginLeft: '3px'}} data={[this.getAltitudeTemps()[0]]} axes colorBars width={550}/>
+        break;
+      case 'weather-mid':
+        var chart = <LineChart yDomainRange={[-30, 60]} height={300} grid style={{marginLeft: '3px'}} data={[this.getAltitudeTemps()[1]]} axes colorBars width={550}/>
+        break;
+      case 'weather-top':
+        var chart = <LineChart yDomainRange={[-30, 60]} height={300} grid style={{marginLeft: '3px'}} data={[this.getAltitudeTemps()[2]]} axes colorBars width={550}/>
+        break;
+    }
+    return (
+      <div>
+      {chart}
+      <button onClick={this.changeDay.bind(this)} name="prev">prev</button>
+      <span style={{position:'absolute', left: '267px'}}>{this.getDate()}</span>
+      <button onClick={this.changeDay.bind(this)} name="next" style={{position:'absolute',left: '525px'}}>next</button>
+      </div>
+    )
+  }
+
   render() {
     var {data} = this.props
     data = window.temp1 || data
@@ -62,20 +92,12 @@ export default class Data extends Component {
           <h3>{title}</h3>
           <div className="row">
             <div className='col-md-8'>
-
-            <BarChart grid style={{marginLeft: '3px'}} data={this.makeBarForSnowFall()} axes colorBars width={550}/>
-                        
-            <LineChart yDomainRange={[-30, 60]} height={300} grid style={{marginLeft: '3px'}} data={this.getAltitudeTemps()} axes colorBars width={550}/>
-            <button onClick={this.changeDay.bind(this)} name="prev">prev</button>
-            <span style={{position:'absolute', left: '267px'}}>{this.getDate()}</span>
-            <button onClick={this.changeDay.bind(this)} name="next" style={{position:'absolute',left: '525px'}}>next</button>
-
+            <DataHeader changeChart={this.changeChart.bind(this)}/>                    
+            {this.renderCharts()}
             </div>
-
             <div className='col-md-4'>
               <Widget data={data}/>
             </div>
-
           </div>    
           <h3>Comments</h3> 
         </div>
