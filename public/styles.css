@@ -1,0 +1,23 @@
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 950px;
+}
+.reg {
+	text-align:right;
+}
+
+.up-in {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 450px;
+}
+
+.searchbar {
+	position:absolute;
+	right: 10px;
+  margin-top: 7.5px;
+}
+.asd {
+  top: 100px;
+}
