@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Comment from './comment';
 import axios from 'axios'
+import CommentForm from './comment-form'
 
 export default class Comments extends Component {
   constructor(props) {
@@ -13,8 +14,7 @@ export default class Comments extends Component {
   }
 
   componentDidMount() {
-    this.fetchComments()
-    
+    this.fetchComments()   
   }
 
   fetchComments() {
@@ -25,11 +25,11 @@ export default class Comments extends Component {
   }
 
   postComment(comment) {
-    return axios.post('http://localhost:3090/comments', {
+    axios.post('http://localhost:3090/comments', {
       identity: this.props.iden,
       username: this.props.username,
       comment: comment
-    })
+    }).then(res=>this.fetchComments())
   }
 
 
@@ -49,7 +49,9 @@ export default class Comments extends Component {
         </div>
         <div className="panel-body">
         {this.renderComments()}
+
         </div>
+         <CommentForm postComment={this.postComment.bind(this)}/>
       </div>
     )
   }

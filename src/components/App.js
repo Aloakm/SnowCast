@@ -54,6 +54,8 @@ class App extends Component {
   signup(email, username, password) {
     axios.post('http://localhost:3090/signup', {email, username, password}).then(res => {
       this.setState({ authenticated: true, signupErr: false })
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('username', username)
       browserHistory.push('/main')
     }).catch(e => {
       var signupErr = e.response.data.error
