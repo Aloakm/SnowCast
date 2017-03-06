@@ -11,4 +11,4 @@ const favSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('fav', userSchema)
+module.exports = mongoose.model('fav', favSchema)

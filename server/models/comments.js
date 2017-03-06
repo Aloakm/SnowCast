@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentsSchema = new Schema({
   identity: {
-    type: String,
-    unique: true
+    type: String
   },
   username: {
     type: String
@@ -12,6 +11,6 @@ const commentsSchema = new Schema({
   comment: {
     type: String
   }
-})
+});
 
-module.exports = mongoose.model('comments', userSchema)
+module.exports = mongoose.model('comments', commentsSchema);
