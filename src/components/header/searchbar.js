@@ -18,7 +18,6 @@ export default class SearchBar extends Component {
 		e.preventDefault()
 		this.props.fetch(this.state.val)
 		this.setState({ val: '' })
-		browserHistory.push('/data')
 	}
 	render() {
 		return(

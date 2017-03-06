@@ -23,7 +23,7 @@ export default class Widget extends Component{
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">
-          <h3 className="panel-title">Forecast</h3>
+          <h3 className="panel-title">Forecast - Today</h3>
         </div>
         <div className="panel-body">
           <div className="col-md-6" style={{textAlign: "center"}}>{baseWeather} F<br/>

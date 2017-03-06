@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       authenticated: props.route.routerProps,
       signinErr: false,
-      data: x || {}
+      data: x || {1:1}
     }
   }
 
@@ -66,7 +66,7 @@ class App extends Component {
 
   signin(username, password) {
     axios.post('http://localhost:3090/signin', {username, password}).then(res => {
-      this.setState({authenticated: true, signinErr: false})
+      this.setState({authenticated: true, signinErr: false, username: username})
       localStorage.setItem('token', res.data.token)
       browserHistory.push('/main')
     }).catch(e => {
@@ -75,7 +75,11 @@ class App extends Component {
   }
 
   fetchWeatherData(loc) {
-    axios.get(`http://localhost:3090/data/${loc}`).then(res => {
+    browserHistory.push('/data')
+    this.setState({data: {1:1}})
+    axios.get(`http://localhost:3090/data/${loc}`, {
+      headers:{authorization: localStorage.getItem('token')}
+    }).then(res => {
       this.setState({data: res.data})
     }).catch(e => {
 
