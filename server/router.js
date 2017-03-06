@@ -15,5 +15,5 @@ module.exports = function(app) {
 	app.post('/signup', Authentication.signup)
 	app.post('/signin', requireSignin, Authentication.signin)
   app.post('/comments', /*requireAuth,*/ commentHandler.postComment)
-  app.get('/comments', /*requireAuth,*/ commentHandler.getComments)
+  app.get('/comments/:identity', /*requireAuth,*/ commentHandler.getComments)
 }

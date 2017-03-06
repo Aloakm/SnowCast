@@ -13,6 +13,7 @@ export default class Data extends Component {
       day: 0,
       showChart: 'snowfall'
     }
+    console.log(this.props.username)
     this.getAltitudeTemps();
   }
 
@@ -37,9 +38,9 @@ export default class Data extends Component {
 
   changeDay(e) {
     if (e.target.name === 'next') {
-      this.state.day < 6 ? this.setState({day:this.state.day+1}) : null     
+      this.state.day < 6 ? this.setState({day:this.state.day + 1}) : null     
     } else {
-      this.state.day > 0 ? this.setState({day:this.state.day-1}) : null   
+      this.state.day > 0 ? this.setState({day:this.state.day - 1}) : null   
     }
   }
 
@@ -101,13 +102,20 @@ export default class Data extends Component {
             <div className='col-md-8'>
             <DataHeader changeChart={this.changeChart.bind(this)}/>                    
             {this.renderCharts()}
+
+            <br />
+            <br /> 
+
+            <Comments iden={this.props.data.request[0].query} username={this.props.username}/>
             </div>
             <div className='col-md-4'>
+
               <Widget data={data}/>
               <Addfavs />
+
             </div>
-          </div>    
-          <Comments />
+          </div>   
+                    
         </div>
       )
     }

@@ -10,7 +10,8 @@ exports.postComment = function(req, res, next) {
 }
 
 exports.getComments = function(req, res, next) {
-  Comments.find().then(comments=> {
+  var {identity} = req.params
+  Comments.find({identity}).then(comments=> {
     res.status(200).send(comments)
   }).catch(e => res.status(422).send({error: 'Unable to fetch comments'}))
 }

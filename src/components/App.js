@@ -13,9 +13,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: props.route.routerProps,
+      authenticated: props.route.routerProps[0],
       signinErr: false,
-      data: x || {1:1}
+      data: x || {1:1}, 
+      username: props.route.routerProps[1]
     }
   }
 
@@ -41,7 +42,8 @@ class App extends Component {
       } else if(child.type.name === "RequireAuth") {
         return React.cloneElement(child, {
           authenticated: state.authenticated,
-          data: this.state.data
+          data: this.state.data,
+          username: this.state.username
         })
       } else {
         return child
@@ -62,12 +64,14 @@ class App extends Component {
   signout() {
     this.setState({authenticated: false});
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
   }
 
   signin(username, password) {
     axios.post('http://localhost:3090/signin', {username, password}).then(res => {
       this.setState({authenticated: true, signinErr: false, username: username})
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('username', username)
       browserHistory.push('/main')
     }).catch(e => {
       this.setState({signinErr: true})

@@ -1,9 +1,56 @@
 import React, { Component } from 'react';
+import Comment from './comment';
+import axios from 'axios'
 
 export default class Comments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: {}
+    }
+    
+    console.log
+  }
+
+  componentDidMount() {
+    this.fetchComments()
+    
+  }
+
+  fetchComments() {
+    axios.get(`http://localhost:3090/comments/${this.props.iden}`).then(response => {
+      this.setState({comments: response.data})
+      console.log(this.state.comments)
+    })
+  }
+
+  postComment(comment) {
+    return axios.post('http://localhost:3090/comments', {
+      identity: this.props.iden,
+      username: this.props.username,
+      comment: comment
+    })
+  }
+
+
+  renderComments() {
+    if (this.state.comments[0]) {
+      return this.state.comments.map(comment => <Comment key={comment._id} comment={comment}/>)
+    } else {
+      return;
+    }
+  }
+
   render() {
     return (
-    <h3>Comments</h3>
+    <div className="panel panel-primary">
+        <div className="panel-heading">
+          <h3 className="panel-title">Firsthand Reports</h3>
+        </div>
+        <div className="panel-body">
+        {this.renderComments()}
+        </div>
+      </div>
     )
   }
 }

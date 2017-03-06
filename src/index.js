@@ -14,10 +14,11 @@ import '../public/bootstrap/css/bootstrap.css'
 
 const token = localStorage.getItem('token');
 var auth = token ? true : false;
+const username = localStorage.getItem('username')
 
 ReactDOM.render(
   <Router history={browserHistory}>
-  		<Route path='/' component={App} routerProps={auth}>
+  		<Route path='/' component={App} routerProps={[auth, username]}>
   		<IndexRoute component={Landing} />
   			<Route path='signin' component={Signin} />
   			<Route path='signup' component={Signup} />
