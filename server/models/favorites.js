@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const favSchema = new Schema({
   identity: {
-    type: String,
-    unique: true
+    type: String
   },
   username: {
     type: String

@@ -111,7 +111,6 @@ export default class Data extends Component {
 
               <Widget data={data}/>
               <Addfavs />
-
             </div>
           </div>   
                     
