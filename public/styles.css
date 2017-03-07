@@ -22,6 +22,9 @@
   cursor: pointer;
 }
 
+.clicklink {
+}
+
 .clicklink:hover {
   cursor: pointer;
   text-decoration: underline;
