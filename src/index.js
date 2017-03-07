@@ -18,14 +18,14 @@ const username = localStorage.getItem('username')
 
 ReactDOM.render(
   <Router history={browserHistory}>
-  		<Route path='/' component={App} routerProps={[auth, username]}>
-  		<IndexRoute component={Landing} />
-  			<Route path='signin' component={Signin} />
-  			<Route path='signup' component={Signup} />
-  			<Route path='main' component={RequireAuth(Main)} />
-        <Route path='signout' component={Signout} />
-        <Route path='data' component={RequireAuth(Data)} />
-  		</Route>
+  	<Route path='/' component={App} routerProps={[auth, username]}>  
+      <IndexRoute component={Landing} />
+      <Route path='signin' component={Signin} />
+      <Route path='signup' component={Signup} />
+      <Route path='main' component={RequireAuth(Main)} />
+      <Route path='signout' component={Signout} />
+      <Route path='data' component={RequireAuth(Data)} />
+  	</Route>
   </Router>
   ,
   document.getElementById('root')
