@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from './favorite-tabs';
 import axios from 'axios';
+import config from './../config'
 
 export default class Favorites extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class Favorites extends Component {
   }
 
   fetchFavorites() {
-    axios.get(`http://localhost:3090/favorites/${this.props.username}`,{
+    axios.get(`${config.server}/favorites/${this.props.username}`,{
       headers:{authorization: localStorage.getItem('token')}
     }).then(response => {
       

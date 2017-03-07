@@ -4,7 +4,6 @@ const passport = require('passport');
 const dataHandler = require('./controllers/datahandler')
 const commentHandler = require('./controllers/commenthandler')
 const favoriteHandler = require('./controllers/favoritehandler')
-
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
 

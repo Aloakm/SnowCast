@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import config from './../config'
 
 export default class Widget extends Component{
   constructor(props) {
@@ -11,7 +12,7 @@ export default class Widget extends Component{
 
   postToFavorites() {
     var nameString = this.props.nameString.split(',').slice(0,2).join(', ')
-    axios.post('http://localhost:3090/favorites', {
+    axios.post(`${config.server}/favorites`, {
       identity: this.props.iden,
       username: this.props.username,
       nameString: nameString
@@ -22,7 +23,7 @@ export default class Widget extends Component{
 
   removeFromFavorites() {
     var nameString = this.props.nameString.split(',').slice(0,2).join(', ');
-    axios.delete(`http://localhost:3090/favorites/${this.props.username}/${nameString}`,{
+    axios.delete(`${config.server}/favorites/${this.props.username}/${nameString}`,{
       headers:{authorization: localStorage.getItem('token')}
     }).then(result => {
       this.isFavorite()
@@ -31,7 +32,7 @@ export default class Widget extends Component{
 
   isFavorite() {
     var nameString = this.props.nameString.split(',').slice(0,2).join(', ')
-    axios.get(`http://localhost:3090/favorites/${this.props.username}/${nameString}`,{
+    axios.get(`${config.server}/favorites/${this.props.username}/${nameString}`,{
       headers:{authorization: localStorage.getItem('token')}
     }).then(found => {
       this.setState({isFavorite: found.data.value})

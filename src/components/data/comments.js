@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Comment from './comment';
 import axios from 'axios'
 import CommentForm from './comment-form'
+import config from './../config'
 
 export default class Comments extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Comments extends Component {
   }
 
   fetchComments() {
-    axios.get(`http://localhost:3090/comments/${this.props.iden}`,{
+    axios.get(`${config.server}/comments/${this.props.iden}`,{
       headers:{authorization: localStorage.getItem('token')}
     }).then(response => {
       this.setState({comments: response.data})
@@ -26,7 +27,7 @@ export default class Comments extends Component {
   }
 
   postComment(comment) {
-    axios.post('http://localhost:3090/comments', {
+    axios.post('${config.server}/comments', {
       identity: this.props.iden,
       username: this.props.username,
       comment: comment
