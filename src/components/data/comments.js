@@ -27,7 +27,7 @@ export default class Comments extends Component {
   }
 
   postComment(comment) {
-    axios.post('${config.server}/comments', {
+    axios.post(`${config.server}/comments`, {
       identity: this.props.iden,
       username: this.props.username,
       comment: comment
