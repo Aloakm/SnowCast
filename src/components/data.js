@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Widget from './data/widget';
 import Addfavs from './data/addfavs';
@@ -37,7 +38,7 @@ export default class Data extends Component {
 
   changeDay(e) {
     if (e.target.name === 'next') {
-      this.state.day < 6 ? this.setState({day:this.state.day + 1}) : null     
+      this.state.day < 6 ? this.setState({day:this.state.day + 1}) : null    
     } else {
       this.state.day > 0 ? this.setState({day:this.state.day - 1}) : null   
     }

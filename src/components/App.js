@@ -90,7 +90,7 @@ class App extends Component {
     }).then(res => {
       this.setState({data: res.data})
     }).catch(e => {
-
+      console.log(e)
     })
   }
 

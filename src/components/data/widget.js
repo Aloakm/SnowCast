@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Widget extends Component{
-  constructor(props) {
-    super(props);
-
-  }
-
   getHourIndex() {
     var now = new Date().getHours()
     var hourIndex = now/3

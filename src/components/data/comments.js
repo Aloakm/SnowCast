@@ -11,7 +11,6 @@ export default class Comments extends Component {
       comments: {}
     }
     
-    console.log
   }
 
   componentDidMount() {
@@ -23,6 +22,8 @@ export default class Comments extends Component {
       headers:{authorization: localStorage.getItem('token')}
     }).then(response => {
       this.setState({comments: response.data})
+    }).catch(e => {
+      console.log(e)
     })
   }
 
@@ -33,7 +34,9 @@ export default class Comments extends Component {
       comment: comment
     }, {
       headers:{authorization: localStorage.getItem('token')}
-    }).then(res=>this.fetchComments())
+    }).then(res=>this.fetchComments()).catch(e => {
+      console.log(e)
+    })
   }
 
 

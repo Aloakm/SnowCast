@@ -3,9 +3,6 @@ import Carousel from './landing/carousel'
 import Favorites from './main/favorites'
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props)
-  }
 	render() {
 		return (
 			<div className="row">
