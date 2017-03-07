@@ -18,7 +18,9 @@ export default class Comments extends Component {
   }
 
   fetchComments() {
-    axios.get(`http://localhost:3090/comments/${this.props.iden}`).then(response => {
+    axios.get(`http://localhost:3090/comments/${this.props.iden}`,{
+      headers:{authorization: localStorage.getItem('token')}
+    }).then(response => {
       this.setState({comments: response.data})
     })
   }
@@ -28,6 +30,8 @@ export default class Comments extends Component {
       identity: this.props.iden,
       username: this.props.username,
       comment: comment
+    }, {
+      headers:{authorization: localStorage.getItem('token')}
     }).then(res=>this.fetchComments())
   }
 

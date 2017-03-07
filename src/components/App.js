@@ -43,7 +43,8 @@ class App extends Component {
         return React.cloneElement(child, {
           authenticated: state.authenticated,
           data: this.state.data,
-          username: this.state.username
+          username: this.state.username,
+          fetch: this.fetchWeatherData.bind(this)
         })
       } else {
         return child

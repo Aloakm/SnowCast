@@ -7,6 +7,9 @@ const favSchema = new Schema({
   },
   username: {
     type: String
+  },
+  nameString: {
+    type: String
   }
 })
 

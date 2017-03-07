@@ -19,7 +19,12 @@
   margin-top: 7.5px;
 }
 .click:hover {
-  cursor: pointer
+  cursor: pointer;
+}
+
+.clicklink:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .user {

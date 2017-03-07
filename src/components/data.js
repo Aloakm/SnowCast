@@ -110,7 +110,7 @@ export default class Data extends Component {
             <div className='col-md-4'>
 
               <Widget data={data}/>
-              <Addfavs />
+              <Addfavs nameString={title} iden={this.props.data.request[0].query} username={this.props.username}/>
             </div>
           </div>   
                     

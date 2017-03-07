@@ -6,6 +6,6 @@ export default class Signout extends Component {
 	}
 
 	render() {
-		return <div>asd</div>
+		return <h1>Successfully signed out</h1>
 	}
 }
